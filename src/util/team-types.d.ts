@@ -7,6 +7,10 @@ export interface Team {
   shortDisplayName: string;
   color: string;
   alternateColor: string;
+  logo: string;
+  seasonSummary: string;
+  recordSummary: string;
+  standingSummary: string;
   logos: {
     href: string;
     alt: string;
@@ -22,26 +26,20 @@ export interface ApiResponse {
   }[];
 }
 
-interface Team {
-  id: string;
-  location: string;
-  name: string;
-}
-
-interface Competitor {
+export interface Competitor {
   id: string;
   team: Team;
   score: string;
   winner: boolean;
 }
 
-interface Competition {
+export interface Competition {
   id: string;
   attendance: number;
   competitors: Competitor[];
 }
 
-interface Season {
+export interface Season {
   year: number;
   type: number;
 }
@@ -56,5 +54,9 @@ export interface Event {
 }
 
 export interface ApiResponseSchedule {
+  status: string;
   events: Event[];
+  team: Team;
+  byeWeek: string;
+  timestamp: string;
 }
