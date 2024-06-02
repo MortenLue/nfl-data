@@ -1,12 +1,15 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import fetchNflTeams from "@/util/teams";
 import { Team } from "@/util/team-types";
 import Image from "next/image";
+import { useTeam } from "@/app/TeamContext";
 
 const NflTeamsComponent: React.FC = () => {
   const [teams, setTeams] = useState<Team[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { selectedTeamId, selectTeam } = useTeam();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +40,11 @@ const NflTeamsComponent: React.FC = () => {
       <div className="mx-auto max-w-md overflow-hidden rounded-lg bg-white shadow">
         <ul className="divide-y divide-gray-100 py-2 px-4">
           {teams.map((team) => (
-            <li className="flex py-4 items-center" key={team.id}>
+            <li
+              className="flex py-4 items-center hover:bg-gray-100 hover:pointer-events-auto hover:cursor-pointer"
+              key={team.id}
+              onClick={() => selectTeam(team.id)}
+            >
               <div className="mr-4 flex-1">
                 <h4 className="text-lg font-medium text-gray-900">
                   {team.displayName} ({team.abbreviation})

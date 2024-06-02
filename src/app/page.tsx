@@ -1,10 +1,16 @@
 "use client";
 import NflTeamsComponent from "@/components/NflTeamsComponent";
+import NflTeamScheduleComponent from "@/components/NflTeamSchedule";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <NflTeamsComponent />
-    </main>
+    <div className="flex h-60">
+      <aside className="flex-none p-4">
+        <NflTeamsComponent />
+      </aside>
+      <main className="min-w-0 flex-1 p-4">
+        <NflTeamScheduleComponent />
+      </main>
+    </div>
   );
 }
